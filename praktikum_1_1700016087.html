@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> CANVAS HTML: My First Canvas App</title>
+</head>
+<style type="text/css">
+	canvas{ background-color: #ccc;
+  }
+ </style>
+
+<body>
+ <canvas width="1000" height="600" id='canvas'></canvas>
+    <script type="text/javascript">
+            var c=document.getElementById('canvas');
+            var ctx=c.getContext('2d');
+            var width=canvas.width;
+            var height=canvas.height;
+
+            //segitigakiri
+            ctx.beginPath();
+            ctx.moveTo(width*0.1, height/2);
+            ctx.lineTo(width*0.25, height/2+height/5);
+            ctx.lineTo(width*0.25, height/2-height/5);
+            ctx.closePath();
+            ctx.fillStyle = "green";
+            ctx.fill();
+            //segitigakanan
+            ctx.beginPath();
+            ctx.moveTo(width-width*0.1, height/2);
+            ctx.lineTo(width-width*0.25, height/2+height/5);
+            ctx.lineTo(width-width*0.25, height/2-height/5);
+            ctx.closePath();
+            ctx.fillStyle = "green";
+            ctx.fill();
+
+            //Lingkaranbesar
+   
+            ctx.beginPath();
+            ctx.arc(width/2, height/2, 120, 0, 2 * Math.PI);
+            ctx.fillStyle ="orange";
+            ctx.strokeStyle = "white";
+		      ctx.lineWidth = 5 ;
+            ctx.fill();
+            ctx.stroke();
+
+            //lingkarankecil
+            ctx.beginPath();
+            ctx.arc(width/2, height/2, 90, 0, 2 * Math.PI);
+            ctx.fillStyle ="yellow";
+            ctx.fill();
+
+
+            
+            //persegi
+            ctx.beginPath();
+            ctx.rect(width/2-50, height/2-50, 100, 100);
+            ctx.strokeStyle ="white"
+            ctx.lineWidth = "5"
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.stroke();
+
+     </script>
+
+  </body>
+  </html> 
