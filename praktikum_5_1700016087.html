@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Starter Canva HTML App</title>
+	<style type="text/css">
+		#canvas {
+			background-color: #ccc;
+			width : 800px ;
+			height : 450px;
+		}
+	</style>
+</head>
+<body>
+<canvas id="canvas"> </canvas>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	canvas.width= canvas.scrollWidth;
+	canvas.height= canvas.scrollHeight;
+	
+	var width = canvas.width;
+	var height = canvas.height;
+	
+	
+	function ball(x,y,r,w,right,left,up,down,speed){
+	this.x=x;
+	this.y=y;
+	this.r=r;
+	this.w=w;
+	this.right=right;
+	this.left=left;
+	this.up=up;
+	this.down=down;
+	
+	this.update=function(){
+			ctx.fillStyle=this.w
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+			ctx.fill();
+			
+			if(this.right){
+				this.x+=speed;
+			}
+						if(this.left){
+							this.x-=speed;
+						}
+						
+			
+			if(this.down){
+				this.y+=speed;
+			}
+						if(this.up){
+							this.y-=speed;
+						}
+			
+			
+			
+			if(this.x+this.r > width){
+				this.right=false;
+				this.left=true;
+			} else if (this.x-this.r <0){
+				this.right=true;
+				this.left=false;
+			}
+			
+			
+						if(this.y+this.r > height){
+							this.down=false;
+							this.up=true;
+						} else if (this.y-this.r <0){
+							this.down=true;
+							this.up=false;
+						}
+		}	
+	}
+	var ball1 = new ball(100,100,70,"red",true,false,false,true,2);
+	var ball2 = new ball(300,200,50,"orange",false,true,true,false,4);
+	var ball3 = new ball(500,100,20,"blue",true,false,true,false,6);
+	var ball4 = new ball(100,300,80,"green",false,true,false,true,1);
+	var ball5 = new ball(40,60,30,"yellow",true,false,false,true,5);
+	
+	
+	function animasi(){
+		ctx.save();
+		ctx.clearRect(0,0,width,height);
+		
+		ball1.update();
+		ball2.update();
+		ball3.update();
+		ball4.update();
+		ball5.update();
+		ctx.restore();
+	}
+	
+	setInterval(animasi,10);
+</script>
+</body>
+</html>
+	
